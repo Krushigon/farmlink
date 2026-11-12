@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FarmDirect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header><a class="logo" href="#">🌱 FarmDirect</a>
+        <nav><a href="#market">Marketplace</a><a href="#prices">Market Prices</a><a href="#weather">Weather</a><a
+                href="#schemes">Schemes</a></nav>
+        <div><button id="loginBtn" class="light">Login</button> <button id="cartBtn" class="primary">Cart (<span
+                    id="count">0</span>)</button></div>
+    </header>
+    <section class="hero">
+        <div><small>FRESH FROM FARM • DIRECT TO YOU</small>
+            <h1>Good food begins<br>with <em>good farmers.</em></h1>
+            <p>Buy fresh farm products directly from local farmers. Fairer connections, clear prices and easy shopping.
+            </p><a class="primary button" href="#market">Explore Marketplace</a> <a class="light button"
+                href="#sell">Sell your produce</a>
+        </div>
+        <div class="art">🥬 🍅 🥕<br><span>Fresh • Local • Direct</span></div>
+    </section>
+    <section class="section" id="market">
+        <div class="heading">
+            <div><small>SHOP LOCAL</small>
+                <h2>Fresh from the marketplace</h2>
+                <p>Browse products listed by farmers.</p>
+            </div>
+            <div><input id="search" placeholder="Search products"><select id="category">
+                    <option>All</option>
+                    <option>Vegetables</option>
+                    <option>Fruits</option>
+                    <option>Grains</option>
+                </select></div>
+        </div>
+        <div id="products" class="grid"></div>
+    </section>
+    <section class="section pale" id="sell"><small>FOR FARMERS</small>
+        <h2>List your farm products</h2>
+        <form id="productForm" class="form"><label>Farmer name<input id="farmer" required></label><label>Product
+                name<input id="product" required></label><label>Category<select id="kind">
+                    <option>Vegetables</option>
+                    <option>Fruits</option>
+                    <option>Grains</option>
+                </select></label><label>Price per kg (₹)<input id="price" type="number" min="1"
+                    required></label><label>Quantity (kg)<input id="qty" type="number" min="1"
+                    required></label><label>Image URL (optional)<input id="photo" type="url"></label><button
+                class="primary">＋ Add product</button></form>
+        <p class="note">Demo listings are saved in this browser using Local Storage.</p>
+    </section>
+    <section class="section two">
+        <article id="prices" class="panel"><small>AGRICULTURE UPDATE</small>
+            <h2>Market prices</h2>
+            <p>Illustrative sample prices for prototype only.</p>
+            <table>
+                <tbody id="priceRows"></tbody>
+            </table>
+            <p class="note">Not live data. Connect verified AGMARKNET/e-NAM data and show its update date before
+                publishing.</p>
+        </article>
+        <article id="weather" class="panel weather"><small>LOCAL CONDITIONS</small>
+            <h2>Weather dashboard</h2><label>Town or district<input id="town" value="Mysuru"></label>
+            <div class="temp"><strong id="temp">--°C</strong><span id="condition">Weather preview</span><b
+                    id="weatherIcon">⛅</b></div>
+            <div class="weatherstats"><span>Humidity<br><b id="humidity">--</b></span><span>Wind<br><b
+                        id="wind">--</b></span><span>Rain chance<br><b id="rain">--</b></span></div><button
+                id="weatherBtn" class="primary">Load demo weather</button>
+            <p class="note">Demo values only. Connect a weather API for live conditions, forecasts and official alerts.
+            </p>
+        </article>
+    </section>
+    <section class="section" id="schemes"><small>FARMER SUPPORT</small>
+        <h2>Government schemes</h2>
+        <div class="grid schemes">
+            <article>
+                <h3>🌾 PM-KISAN</h3>
+                <p>Income-support scheme for eligible farmer families, subject to scheme rules.</p><a
+                    href="https://pmkisan.gov.in/" target="_blank">Official website ↗</a>
+            </article>
+            <article>
+                <h3>🛡️ PM Fasal Bima Yojana</h3>
+                <p>Crop insurance support for eligible notified crops and areas.</p><a href="https://pmfby.gov.in/"
+                    target="_blank">Official website ↗</a>
+            </article>
+            <article>
+                <h3>💳 Kisan Credit Card</h3>
+                <p>Credit facility for eligible farmers. Terms depend on the lending bank.</p><a
+                    href="https://www.myscheme.gov.in/" target="_blank">Check scheme details ↗</a>
+            </article>
+        </div>
+        <p class="note">Verify current eligibility, benefits and application dates on official portals.</p>
+    </section>
+    <footer><b>🌱 FarmDirect</b>
+        <p>Connecting farmers and consumers directly.</p><small>Student project prototype • Not a live commerce or
+            payment service</small>
+    </footer>
+    <div class="shade" id="cartModal">
+        <div class="modal"><button class="x" data-close="cartModal">×</button><small>YOUR BASKET</small>
+            <h2>Shopping cart</h2>
+            <div id="cartItems"></div>
+            <h3 id="total">Total: ₹0</h3><button id="checkout" class="primary wide">Continue to checkout</button>
+            <p class="note">Checkout is a demonstration. No money will be collected.</p>
+        </div>
+    </div>
+    <div class="shade" id="checkoutModal">
+        <div class="modal"><button class="x" data-close="checkoutModal">×</button><small>ORDER DETAILS</small>
+            <h2>Place your order</h2>
+            <form id="checkoutForm"><label>Customer name<input required></label><label>Phone number<input type="tel"
+                        pattern="[0-9]{10}" maxlength="10" required></label><label>Delivery address<textarea
+                        required></textarea></label><label>Payment method<select>
+                        <option>Cash on Delivery (demo)</option>
+                        <option>UPI (demo only)</option>
+                        <option>Card (demo only)</option>
+                    </select></label><button class="primary wide">Confirm demo order</button></form>
+            <p class="note">No real payment is processed. Real online payments need a secure backend and payment
+                gateway. Never store card or UPI credentials in frontend code.</p>
+        </div>
+    </div>
+    <div class="shade" id="loginModal">
+        <div class="modal"><button class="x" data-close="loginModal">×</button><small>WELCOME TO FARMDIRECT</small>
+            <h2>Choose your role</h2><label>Your name<input id="userName"></label><label>Continue as<select id="role">
+                    <option>Customer</option>
+                    <option>Farmer</option>
+                </select></label><button id="continue" class="primary wide">Continue (demo)</button>
+            <p class="note">Demo role selection only; not secure account authentication.</p>
+        </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
